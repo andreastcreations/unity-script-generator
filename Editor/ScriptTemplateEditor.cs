@@ -91,12 +91,6 @@ namespace ATMedia.CustomTools.ScriptGeneration
                 }
             }
 
-            if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
-            {
-                GUI.FocusControl(null);
-                Repaint();
-            }
-
             serializedObject.ApplyModifiedProperties();
         }
 
