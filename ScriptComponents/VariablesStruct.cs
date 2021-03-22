@@ -32,15 +32,9 @@ namespace ATMedia.CustomTools.ScriptGeneration
         /// Gets the full declaration of a variable.
         /// </summary>
         /// <param name="index">This exists in case we have a list of unnamed variables.</param>
-        /// <param name="isStatic">This is used in case the we declare our class as static.</param>
         /// <returns>The full declaration of a variable in a <see cref="string"/> format.</returns>
-        public string GetVariableString(int index = 0, bool isStatic = false)
+        public string GetVariableString(int index = 0)
         {
-            if (isStatic)
-            {
-                additionalModifier = VariableModifierPopUp.Static;
-            }
-
             string additionalModifierString = GetAdditionalModifierString();
 
             if (access == string.Empty)
@@ -76,9 +70,8 @@ namespace ATMedia.CustomTools.ScriptGeneration
         /// Gets the full declaration of a property based on a variable name.
         /// </summary>
         /// <param name="index">This exists in case we have a list of unnamed variables.</param>
-        /// <param name="isStatic">This is used in case the we declare our class as static.</param>
         /// <returns>The full declaration of a property in a <see cref="string"/> format.</returns>
-        public string GetPropertyString(int index = 0, bool isStatic = false)
+        public string GetPropertyString(int index = 0)
         {
             string newAccess = "public";
             string newType = (type == string.Empty) ? "object" : type;
@@ -90,8 +83,7 @@ namespace ATMedia.CustomTools.ScriptGeneration
             }
             else
             {
-                string tempName = name.ChangeFirstLetterToCaps().RemoveWhiteSpace();
-                newName = (index < 0) ? tempName : tempName + index;
+                newName = name.ChangeFirstLetterToCaps().RemoveWhiteSpace();
             }
 
             string addGetSet;
