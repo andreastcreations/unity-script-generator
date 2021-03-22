@@ -24,6 +24,15 @@ namespace ATMedia.CustomTools.ScriptGeneration
         /// </summary>
         public void OnValidate()
         {
+            // Elements defined in a namespace may be explicitly declared public or internal.
+            if (accessModifier == AccessModifierPopUp.Private ||
+                accessModifier == AccessModifierPopUp.Protected ||
+                accessModifier == AccessModifierPopUp.ProtectedInternal ||
+                accessModifier == AccessModifierPopUp.PrivateProtected)
+            {
+                accessModifier = AccessModifierPopUp.Public;
+            }
+
             if (type == TypePopUp.Class)
             {
                 if (typeModifier == TypeModifierPopUp.Static)
@@ -40,15 +49,6 @@ namespace ATMedia.CustomTools.ScriptGeneration
 
             if (type == TypePopUp.Interface)
             {
-                // Can only be public or internal. Set default to public.
-                if (accessModifier == AccessModifierPopUp.Private ||
-                    accessModifier == AccessModifierPopUp.Protected ||
-                    accessModifier == AccessModifierPopUp.ProtectedInternal ||
-                    accessModifier == AccessModifierPopUp.PrivateProtected)
-                {
-                    accessModifier = AccessModifierPopUp.Public;
-                }
-
                 // Can not be abstract, partial, sealed or static. Set to none.
                 typeModifier = TypeModifierPopUp.None;
 
@@ -75,15 +75,6 @@ namespace ATMedia.CustomTools.ScriptGeneration
 
             if (type == TypePopUp.Struct)
             {
-                // Can only be public or internal. Set default to public.
-                if (accessModifier == AccessModifierPopUp.Private ||
-                    accessModifier == AccessModifierPopUp.Protected ||
-                    accessModifier == AccessModifierPopUp.ProtectedInternal ||
-                    accessModifier == AccessModifierPopUp.PrivateProtected)
-                {
-                    accessModifier = AccessModifierPopUp.Public;
-                }
-
                 // Can only use sealed or none. Set default to none.
                 if (typeModifier == TypeModifierPopUp.Abstract ||
                     typeModifier == TypeModifierPopUp.Sealed ||
@@ -103,15 +94,6 @@ namespace ATMedia.CustomTools.ScriptGeneration
 
             if (type == TypePopUp.Enum)
             {
-                // Can only be public or internal. Set default to public.
-                if (accessModifier == AccessModifierPopUp.Private ||
-                    accessModifier == AccessModifierPopUp.Protected ||
-                    accessModifier == AccessModifierPopUp.ProtectedInternal ||
-                    accessModifier == AccessModifierPopUp.PrivateProtected)
-                {
-                    accessModifier = AccessModifierPopUp.Public;
-                }
-
                 // Can not be abstract, partial, sealed or static. Set to none.
                 typeModifier = TypeModifierPopUp.None;
 
